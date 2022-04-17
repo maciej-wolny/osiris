@@ -1,0 +1,9 @@
+runtime: python37
+
+handlers:
+- url: /.*
+  script: auto
+
+env_variables:
+  GCLOUD_PROJECT: simplify-docs
+  FLASK_CONFIGURATION: prod

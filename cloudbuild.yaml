@@ -1,0 +1,19 @@
+steps:
+  - name: 'docker.io/library/python:3.7'
+    id: Linter
+    entrypoint: /bin/sh
+    args:
+      - -c
+      - 'pip install -r requirements.txt && pylint src/'
+  - name: 'docker.io/library/python:3.7'
+    id: Test
+    entrypoint: /bin/sh
+    env:
+      - 'FLASK_CONFIGURATION=test'
+    args:
+      - -c
+      - 'pip install -r requirements.txt && pytest --disable-pytest-warnings tests/'
+  - name: "gcr.io/cloud-builders/gcloud"
+    id: Deploy app
+    args: ["app", "deploy"]
+timeout: "1600s"

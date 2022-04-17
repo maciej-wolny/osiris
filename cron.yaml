@@ -1,0 +1,3 @@
+- description: "fetch krs data"
+  url: /krs/fetchData
+  schedule: every monday 09:00
